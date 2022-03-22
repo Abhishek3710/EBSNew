@@ -1,4 +1,4 @@
-FROM node
+FROM node:15.13-alpine
 WORKDIR /ebs-app
 COPY package.json .
 RUN npm install
