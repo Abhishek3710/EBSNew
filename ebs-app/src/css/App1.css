@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto",sans-serif;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    /* background-image: url("\src\images\Homepage2.jpg"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+}
+
+.img-background{
+    /* background-image: url("\src\images\Homepage.jpg"); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+}
+
+.container{
+    padding: 20px;
+}
+
+.site-info{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.title{
+    border: 2px solid;
+    padding: 10px 20px;
+    width: 800px;
+    font-size: 36px;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+}

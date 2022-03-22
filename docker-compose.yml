@@ -1,0 +1,61 @@
+version: '3.4'
+services:
+  react-app:
+    build:
+      context: ./ebs-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ebs-app:/ebs-app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_NAME=sanjeev
+    image: abhi31118/react-app:react-app
+    container_name: react_container
+    command: npm start
+    # env_file:
+    #   - ./.env
+  
+  mssql:
+    image: abhi31118/ebsnew_mssql
+    build: ./ebs_db
+    container_name: db
+    ports:
+      - "1433:1433"
+  
+  
+  api:
+    image: abhi31118/api
+    build:
+      context: ./ElectricityBillingSystem
+      dockerfile: ./ElectricityBillingSystem/Dockerfile
+    ports:
+      - "5000:443"
+      - "5001:80"
+    environment:
+      ASPNETCORE_URLS: "http://+80;https://+443"
+      ASPNETCORE_HTTPS_PORT: "5000"
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: 1
+      ASPNETCORE_LOGGING_CONSOLE_DISABLECOLORS: true
+      ASPNETCORE_Kestrel__Certificates__Default__Password: password
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+    volumes:
+      - ./electricitybillingsystem/ElectricityBillingSystem:/ElectricityBillingSystem
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/https
+    container_name: api
+    depends_on:
+      - mssql
+  
+  # mssql:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   environment:
+  #     ACCEPT_EULA: "Y"
+  #     SA_PASSWORD: "Pa55word"
+  #     # MSSQL_PID: Express
+  #   ports:
+  #     - "1433:1433"
+
+  
