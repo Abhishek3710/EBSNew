@@ -1,7 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import './css/App1.css'
+
+
+// //////////////////////////////////////////////////////////////////
 import Home from './Home';
+import CustomerRegister from './components/Login/CustomerRegister';
 
 import { Component, createContext,useReducer } from 'react';
 import { initialState,reducer } from './reducer/UseReducer';
@@ -24,7 +28,7 @@ import { ContactUs } from './components/Login/ContactUs';
 
 
 
-import CustomerRegister from './components/Login/CustomerRegister';
+
 import { BrowserRouter, Switch, Link, Route } from "react-router-dom";
 import { AboutUs } from './components/Login/AboutUs';
 import AdminLogin from './components/adminComponents/AdminLogin';

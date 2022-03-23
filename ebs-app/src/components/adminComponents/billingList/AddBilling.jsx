@@ -88,7 +88,31 @@ const AddBilling = () => {
               name="units"
             />
           </div>
-          <div className="form-group">
+          <label htmlFor="bill_For_Month">Bill For Month</label>
+            <select 
+              type="text"
+              className="form-control"
+              id="bill_For_Month"
+              required
+              value={billing.bill_For_Month}
+              onChange={handleInputChange}
+              name="bill_For_Month"
+              >
+                <option value=""></option>
+                <option value="Jan">Jan</option>
+                <option value="Feb">Feb</option>
+                <option value="Mar">Mar</option>
+                <option value="Apr">Apr</option>
+                <option value="May">May</option>
+                <option value="Jun">Jun</option>
+                <option value="Jul">Jul</option>
+                <option value="Aug">Aug</option>
+                <option value="Sep">Sep</option>
+                <option value="Oct">Oct</option>
+                <option value="Nov">Nov</option>
+                <option value="Dec">Dec</option>
+              </select>
+          {/* <div className="form-group">
             <label htmlFor="bill_For_Month">bill_For_Month</label>
             <input
               type="text"
@@ -99,7 +123,7 @@ const AddBilling = () => {
               onChange={handleInputChange}
               name="bill_For_Month"
             />
-          </div>
+          </div> */}
           <div className="form-group">
             <label htmlFor="amount">Amount</label>
             <input
@@ -115,7 +139,7 @@ const AddBilling = () => {
           <div className="form-group">
             <label htmlFor="due_Date">due_Date</label>
             <input
-              type="text"
+              type="date"
               className="form-control"
               id="due_Date"
               required

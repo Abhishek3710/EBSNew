@@ -30,11 +30,11 @@ const BillingList = () => {
   
   const columns = [    
     { field: "billId", headerName: "billId",  width: 120 },
-    { field: "connectionId", headerName: "connectionId", width: 100 },
+    { field: "connectionId", headerName: "connectionId", width: 150 },
     { field: "units", headerName: "units", width: 150 },
     { field: "bill_For_Month", headerName: "bill_For_Month", width: 180 },
     { field: "amount", headerName: "amount", width: 140 },
-    { field: "due_Date", headerName: "due_Date", width: 150 },
+    { field: "due_Date", headerName: "due_Date", width: 190 },
     { field: "status", headerName: "status", width: 150 },
 
     {

@@ -1,100 +1,191 @@
-import React, { Component } from 'react';
-//import farmers from '../../images/farmers.png';
-import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
-import { useNavigate, Link, NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams,useHistory} from "react-router-dom";
+import CustomerDataService from "../../services/CustomerService";
 
-class CustomerRegister extends React.Component 
-{
-    
-    constructor(props)
-    {
-        super(props);
-        this.handleSubmit=this.handleSubmit.bind(this);
+
+const validEmail = (value) => {
+    if (!(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
+        </div>
+      );
     }
-
-     handleSubmit(event){
-        event.preventDefault();
-
-        const data = {
-            FName: this.FName,
-            FMobileNo: this.FMobileNo,
-            FEmailId: this.FFEmailId,           
-            FPassword: this.FPassword,
-            FAddress: this.FAddress,
-        }
-        fetch("https://localhost:5000/api/farmer/Register",{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                FName:event.target.FName.value,
-                FMobileNo:event.target.FMobileNo.value,
-                FEmailId:event.target.FEmailId.value,               
-                FPassword:event.target.FPassword.value,
-                FAddress: event.target.FAddress.value,
-            })            
-        })
-
-        .then(res=>res.json())
-        .then((result)=>{
-            alert(result);
-        },
-        (error)=>{
-            alert('Failed');
-        })
+  };
+  
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
     }
+  };
 
-    render() {
-        return (
-            <div className='base-container'>
-                <div className='header'>Customer Register</div>
-                
-                <br/>
-                <form onSubmit={this.handleSubmit}>
-                    <div className='content'>
-                        <div className='image'>
-                            {/* <img src={farmers} /> */}
-                        </div>
-                        <div className='form'>
-                            <div className="form-group">
-                                <label>Customer Name</label>
-                                <input type="text" name="FName" placeholder="Enter your Name"
-                                onChange={event => this.FName = event.target.value}/>                                 
-                            </div>
-                            <div className="form-group">
-                                <label>Customer Mobile No.</label>
-                                <input type="text" name="FMobileNo" placeholder="Enter phone number"
-                                onChange={event => this.FMObileNo = event.target.value}/>                                 
-                            </div>
-                            <div className="form-group">
-                                <label>Customer EmailId</label>
-                                <input type="text" name="FEmailId" placeholder="Enter Email Id"
-                                onChange={event => this.FEmailId = event.target.value}/>                                 
-                            </div>
-                            
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input type="text" name="FPassword" placeholder="Enter your password"
-                                onChange={event => this.FPassword = event.target.value}/>                                 
-                            </div>
-                            <div className="form-group">
-                                <label>Address</label>
-                                <input type="text" name="FAddress" placeholder="Enter your Address"
-                                onChange={event => this.FAddress = event.target.value}/>                                 
-                            </div>
+const CustomerRegister = () => {
+    const {id}=useParams();
+    const history=useHistory();
+  const initialCustomerState = {
+    customerId:"",
+    customerName: "",
+    contactNumber: "",
+    emailId: "",
+    password : "",
+    address : "",
+    city : "",
+    state : "",
+  };
+  const [customer, setCustomer] = useState(initialCustomerState);
 
-                        </div>
-                    </div>
-                    <div>
-                    <button className='btn btn-primary btn-block'>Register</button>
-                    </div>
-                </form> 
-                
-            </div >
-        );
-    }
-}
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setCustomer({ ...customer, [name]: value });
+  };
 
+    const saveCustomer = () => {
+    var data = {
+        customerName: customer.customerName,
+        contactNumber: customer.contactNumber,
+        emailId: customer.emailId,
+        password : customer.password,
+        address : customer.address,
+        city : customer.city,
+        state : customer.state,
+    };
+    CustomerDataService.create(data)
+      .then(response => {
+        setCustomer({
+          id: response.data.customerId,
+          customerName: response.data.customerName,
+          contactNumber: response.data.contactNumber,
+          emailId: response.data.emailId,
+          password : response.data.password,
+          address : response.data.address,
+          city : response.data.city,
+          state : response.data.state
+        });
+        console.log(response.data);
+        history.push(`/Home`)
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  return (
+    <div className="edit-background">
+      <div className="card" style={{width: '25%'}}>
+        <div className="col-md-12">
+            <h4><b>Add Your Details</b></h4>
+            <div className="form-group">
+              <label htmlFor="customerName">Customer Name</label>
+              <input
+              type="text"
+              className="form-control"
+              id="customerName"
+              required
+              value={customer.customerName}
+              onChange={handleInputChange}
+              name="customerName"
+              validations={[required]}
+              maxLength="15"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="contactNumber">Contact Number</label>
+              <input
+              type="text"
+              className="form-control"
+              id="contactNumber"
+              required
+              value={customer.contactNumber}
+              onChange={handleInputChange}
+              name="contactNumber"
+              validations={[required]}
+              minLength="10"
+              maxLength="10"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="emailId">Email Id</label>
+              <input
+              type="text"
+              className="form-control"
+              id="emailId"
+              required
+              value={customer.emailId}
+              onChange={handleInputChange}
+              name="emailId"
+              validations={[required, validEmail]}
+              maxLength="20"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+              type="text"
+              className="form-control"
+              id="password"
+              required
+              value={customer.password}
+              onChange={handleInputChange}
+              name="password"
+              // validations={[required, validpassword]}
+              maxLength="8"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="address">Address</label>
+              <input
+              type="text"
+              className="form-control"
+              id="address"
+              required
+              value={customer.address}
+              onChange={handleInputChange}
+              name="address"
+              validations={[required]}
+              maxLength="20"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="city">City</label>
+              <input
+              type="text"
+              className="form-control"
+              id="city"
+              required
+              value={customer.city}
+              onChange={handleInputChange}
+              name="city"
+              validations={[required]}
+              maxLength="11"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="state">State</label>
+              <input
+              type="text"
+              className="form-control"
+              id="state"
+              required
+              value={customer.state}
+              onChange={handleInputChange}
+              name="state"
+              validations={[required]}
+              maxLength="11"
+              />
+            </div>
+            <br />
+            <button 
+              type="submit"
+              className="btn btn-primary" onClick={saveCustomer}>
+              Add
+            </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 export default CustomerRegister;

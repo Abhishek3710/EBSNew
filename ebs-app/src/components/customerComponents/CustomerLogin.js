@@ -16,7 +16,7 @@ const required = (value) => {
     );
   }
 };
-const Login = (props) => {
+const CustomerLogin = (props) => {
 
 const {state,dispatch} = useContext(UserContext);
 
@@ -87,6 +87,7 @@ const {state,dispatch} = useContext(UserContext);
     <div className="edit-background">
       <div className="col-md-12">
       <div className="card card-container">
+        <h5>Customer Login</h5>
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
@@ -148,4 +149,4 @@ const {state,dispatch} = useContext(UserContext);
     </div>
   );
 };
-export default Login;
+export default CustomerLogin;

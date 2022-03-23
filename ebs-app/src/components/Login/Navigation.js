@@ -1,6 +1,4 @@
 import React,{Component, useContext} from 'react';
-//import {NavLink} from 'react-router-dom';
-//import {Navbar,Nav, Button} from 'react-bootstrap';
 import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse';
 import { UserContext } from '../../App';
 import {
@@ -11,55 +9,6 @@ import {
     NavBtn,
     NavBtnLink
   } from './NavbarElements';
-
-
-// export class Navigation extends Component{
-
-//     render(){
-//         return(
-//             <Navbar bg="dark" expand="lg">
-//                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-//                 <Navbar.Collapse id="basic-navbar-nav"/>
-//                 <Nav>                
-//                     <NavLink className="d-inline p-3 bg-dark text-white" to="/Home">
-//                         Home
-//                     </NavLink>
-
-//                     <NavLink className="d-inline p-3 bg-dark text-white" to="/AboutUs">
-//                         AboutUs
-//                     </NavLink>
-//                 </Nav>
-//             </Navbar>
-//         )
-//     }
-// }
-
-
-// export const Navigation =() =>{
-//     return(
-//         <>
-//             <nav className='navbar navbar-expand-lg navbar-light bg-light' >
-//                 <NavLink className="navbar-brand" to="#">
-//                 </NavLink>
-//                 <button className='navbar-toggler' type='button' data-toggle='collapse' data-target="navbarSupportedContent" >
-//                     <span className='navbar-toggler-icon'></span>
-//                 </button>
-//                 <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-//                     <ul className='navbar-nav ml-auto'>
-//                         <li className='nav-item-active'>
-//                             <NavLink className="d-inline p-3 bg-dark text-white" to="/Home">Home</NavLink>
-//                         </li>
-//                         <li className='nav-item-active'>
-//                         <NavLink className="d-inline p-3 bg-dark text-white" to="/AboutUs">AboutUs</NavLink>
-//                         </li>
-
-//                     </ul>
-
-//                 </div>
-//             </nav>
-//         </>
-//     )
-// }
 
 export const Navigation =() =>{
 
@@ -92,7 +41,7 @@ export const Navigation =() =>{
                     <NavLink to="/Home" activeStyle>Home</NavLink>
                     <NavLink to="/AboutUs" activeStyle>AboutUs</NavLink>
                     <NavLink to="/ContactUs" activeStyle>Contact Us</NavLink>
-                    <NavLink to="/AddCustomer" activeStyle>Register</NavLink>    
+                    <NavLink to="/CustomerRegister" activeStyle>Register</NavLink>    
                     <NavBtnLink to='/CustomerLogin'>Sign In</NavBtnLink>             
                 </>
             )
