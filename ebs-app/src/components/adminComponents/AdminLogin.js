@@ -25,7 +25,7 @@ const Login = (props) => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [admin, setAdmin] = useState({ Email: '', Password: ''});  
-  const apiUrl = "https://backendebs.azurewebsites.net/api/Admin/Login";
+  const apiUrl = "https://backendebs1.azurewebsites.net/api/Admin/Login";
   
   const onChangeEmail = (e) => {
     const Email = e.target.value;

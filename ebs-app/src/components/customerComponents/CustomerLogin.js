@@ -27,7 +27,7 @@ const {state,dispatch} = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [customer, setCustomer] = useState({ Email: '', Password: ''});  
-  const apiUrl = "https://backendebs.azurewebsites.net/api/customers/Login";
+  const apiUrl = "https://backendebs1.azurewebsites.net/api/customers/Login";
   
   const onChangeEmail = (e) => {
     const Email = e.target.value;

@@ -8,7 +8,7 @@ const CustomerLogout = () => {
     const {state,dispatch} = useContext(UserContext);
 
     useEffect(() => {
-        axios.get('https://backendebs.azurewebsites.net/api/Admin/Logout').then(
+        axios.get('https://backendebs1.azurewebsites.net/api/Admin/Logout').then(
             (result) => {
               if(result.data.status=='200')
               {
