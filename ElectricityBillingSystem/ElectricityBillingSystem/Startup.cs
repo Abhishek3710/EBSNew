@@ -42,7 +42,6 @@ namespace ElectricityBillingSystem
             {
                 options.AddPolicy("CorsApi",
                     builder => builder.WithOrigins("http://localhost:3000","https://frontendebs.azurewebsites.net")
-                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });
