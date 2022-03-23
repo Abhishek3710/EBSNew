@@ -5,7 +5,7 @@ import axios from 'axios';
 const NewCustomer = () => {
     const [customer, setCustomer] = useState([])
     useEffect(() => {
-        axios.get("https://localhost:44312/api/Customers")
+        axios.get("https://backendebs.azurewebsites.net/api/Customers")
         .then((result)=>{console.log(result)})
         .catch((error)=>{console.log("error")})
     

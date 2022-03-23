@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "https://localhost:5000/api/customers/";
+const API_URL = "https://backendebs.azurewebsites.net/api/customers/";
 const register = (username, email, password) => {
   return axios.post(API_URL + "signup", {
     username,
