@@ -38,13 +38,14 @@ namespace ElectricityBillingSystem
         {
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
-            // services.AddCors(options =>
-            // {
-            //     options.AddPolicy("CorsApi",
-            //         builder => builder.WithOrigins("http://localhost:3000")
-            //             .AllowAnyHeader()
-            //             .AllowAnyMethod());
-            // });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsApi",
+                    builder => builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -117,7 +118,7 @@ namespace ElectricityBillingSystem
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            //app.UseCors(options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -134,7 +135,7 @@ namespace ElectricityBillingSystem
             app.UseStaticFiles();
 
             app.UseRouting();
-            //app.UseCors("CorsApi");
+            app.UseCors("CorsApi");
             app.UseAuthentication();
             app.UseAuthorization();
 
