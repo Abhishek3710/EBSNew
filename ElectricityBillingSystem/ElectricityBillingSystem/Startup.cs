@@ -45,7 +45,7 @@ namespace ElectricityBillingSystem
             //             .AllowAnyHeader()
             //             .AllowAnyMethod());
             // });
-            
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -134,7 +134,7 @@ namespace ElectricityBillingSystem
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseCors("CorsApi");
+            //app.UseCors("CorsApi");
             app.UseAuthentication();
             app.UseAuthorization();
 
