@@ -10,7 +10,7 @@ import Homepage from '../../images/Homepage.png';
 class Home extends Component {
     render() {
         return (
-            <div className='home-page'>
+            <div className='edit-background'>
                 <div className='base-container'>
                     <div className='content'>
                         <div className='header'><h1>Electricity Billing system</h1></div>

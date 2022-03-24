@@ -10,12 +10,12 @@ html, body{
     width: 100%;
 }
 
-/* body{
+body{
     background-image: url("https://assets.skyfilabs.com/images/blog/electricity-billing.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-size: 100% 100%; 
-} */
+}
 
 .abc{
     background-image: url("https://assets.skyfilabs.com/images/blog/electricity-billing.webp");
@@ -24,12 +24,12 @@ html, body{
     background-size: 100% 100%; 
 }
 
-.img-background{
+/* .img-background{
     background-image: url("https://assets.skyfilabs.com/images/blog/electricity-billing.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-size: 100% 100%; 
-}
+} */
 
 .container{
     padding: 20px;

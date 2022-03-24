@@ -45,7 +45,7 @@ const Billing = props => {
       .then(response => {
         console.log(response.data);
         setMessage("The Billing was updated successfully!");
-        history.push("/CustomerDashboard")
+        history.push("/BillingDetails")
       })
       .catch(e => {
         console.log(e);

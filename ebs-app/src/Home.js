@@ -6,7 +6,7 @@ import {NavLink} from 'react-router-dom';
 class Home extends Component {
     render() {
         return (
-            <div className='abc'> 
+            <div className='edit-background'> 
                 <div className="img-background">
                 <div className="site-info">
                     <div className="title">
